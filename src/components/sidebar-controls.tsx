@@ -14,10 +14,17 @@ import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Loader2, AlertTriangle, MapPin, FileText, CheckCircle2 } from "lucide-react";
 import type { LatLngLiteral } from "google-maps";
+import { LarguraInput } from "@/components/ui/inputlargura";
+import { AlturaInput } from "./ui/inputaltura";
+import { ComprimentoInput } from "./ui/inputcomprimento";
+
+
 
 interface SidebarControlsProps {
   projectTypes: string[];
   selectedProjectType: string;
+  quartos: string[];
+  setQuartos: string;
   onProjectTypeChange: (type: string) => void;
   onGenerateReport: () => void;
   selectedPoint: LatLngLiteral | null;
@@ -32,6 +39,8 @@ interface SidebarControlsProps {
 export default function SidebarControls({
   projectTypes,
   selectedProjectType,
+  quartos,
+  setQuartos,
   onProjectTypeChange,
   onGenerateReport,
   selectedPoint,
@@ -48,7 +57,7 @@ export default function SidebarControls({
       
       <div className="space-y-2">
         <Label htmlFor="project-type" className="text-sm font-medium">Tipo de Projeto</Label>
-        <Select value={selectedProjectType} onValueChange={onProjectTypeChange}>
+        <Select value={selectedProjectType ?? ""} onValueChange={onProjectTypeChange}>
           <SelectTrigger id="project-type" className="w-full">
             <SelectValue placeholder="Selecione o tipo de projeto" />
           </SelectTrigger>
@@ -62,6 +71,55 @@ export default function SidebarControls({
         </Select>
       </div>
 
+      {/* 👇 Caixinha nova que aparece só quando "Residencial Unifamiliar" está selecionado */}
+      
+      
+      {selectedProjectType === "Residencial Unifamiliar" && (
+        <div className="space-y-2">
+          <Label htmlFor="quartos" className="text-sm font-medium">
+            Número de Quartos
+          </Label>
+          <Select value={quartos} onValueChange={setQuartos}>
+            <SelectTrigger id="quartos" className="w-full">
+              <SelectValue placeholder="Escolha o número de quartos" />
+            </SelectTrigger>
+            <SelectContent>
+              {[2, 3, 4, 5].map((q) => (
+                <SelectItem key={q} value={String(q)}>
+                  {q} quartos
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
+
+      
+      <div className="space-y-6">
+        <LarguraInput />
+      </div>
+
+      <div className="space-y-10">
+        <AlturaInput />
+      </div>
+
+      <div className="space-y-14">
+        <ComprimentoInput />
+      </div>
+
+              <Button
+        onClick={onGenerateReport}
+        disabled={isReportButtonDisabled}
+        className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+      >
+        {isLoadingReport ? (
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+        ) : (
+          <FileText className="mr-2 h-4 w-4" />
+        )}
+        Analisar viabilidade
+      </Button>  
+
       <Button
         onClick={onGenerateReport}
         disabled={isReportButtonDisabled}
@@ -74,6 +132,7 @@ export default function SidebarControls({
         )}
         Criar Relatório
       </Button>
+
 
       <Separator />
 
