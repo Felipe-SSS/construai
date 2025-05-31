@@ -1,7 +1,6 @@
 import type {Metadata} from 'next';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster";
-
+import { Toaster } from 'sonner'
 export const metadata: Metadata = {
   title: 'Pouso Alegre Land Use Analyzer',
   description: 'Analisador de Uso do Solo de Pouso Alegre',

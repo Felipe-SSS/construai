@@ -17,6 +17,7 @@ import type { LatLngLiteral } from "google-maps";
 import { LarguraInput } from "@/components/ui/inputlargura";
 import { AlturaInput } from "./ui/inputaltura";
 import { ComprimentoInput } from "./ui/inputcomprimento";
+import { toast } from "sonner"
 
 
 
@@ -53,8 +54,14 @@ export default function SidebarControls({
 }: SidebarControlsProps) {
   return (
     <div className="flex h-full w-full flex-col space-y-6 overflow-y-auto rounded-lg bg-card p-6 shadow-lg">
-      <h2 className="font-headline text-2xl font-semibold text-primary">Constru.AI</h2>
-      
+      <div className="flex justify-between items-center">
+  <h2 className="font-headline text-2xl font-semibold text-primary">Constru.AI</h2>
+      <img
+      src="/logo.jpg"
+      alt="Logo"
+      className="h-10 w-auto object-contain"
+  />
+      </div>
       <div className="space-y-2">
         <Label htmlFor="project-type" className="text-sm font-medium">Tipo de Projeto</Label>
         <Select value={selectedProjectType ?? ""} onValueChange={onProjectTypeChange}>
@@ -107,31 +114,26 @@ export default function SidebarControls({
         <ComprimentoInput />
       </div>
 
-              <Button
-        onClick={onGenerateReport}
-        disabled={isReportButtonDisabled}
-        className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-      >
-        {isLoadingReport ? (
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
+      <Button
+          onClick={() => {
+            toast.success("Download iniciado!");
+          }}
+          className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+        >
           <FileText className="mr-2 h-4 w-4" />
-        )}
-        Analisar viabilidade
-      </Button>  
+          Gerar Relatório
+        </Button>
 
       <Button
-        onClick={onGenerateReport}
-        disabled={isReportButtonDisabled}
-        className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-      >
-        {isLoadingReport ? (
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
+          onClick={() => {
+            toast.success("Download iniciado!");
+          }}
+          className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+        >
           <FileText className="mr-2 h-4 w-4" />
-        )}
-        Criar Relatório
-      </Button>
+          Gerar DWG
+        </Button>
+
 
 
       <Separator />
