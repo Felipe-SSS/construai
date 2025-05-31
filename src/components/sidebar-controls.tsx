@@ -53,15 +53,23 @@ export default function SidebarControls({
   isReportButtonDisabled,
 }: SidebarControlsProps) {
   return (
-    <div className="flex h-full w-full flex-col space-y-6 overflow-y-auto rounded-lg bg-card p-6 shadow-lg">
-      <div className="flex justify-between items-center">
-  <h2 className="font-headline text-2xl font-semibold text-primary">Constru.AI</h2>
-      <img
-      src="/logo.jpg"
+<div className="relative h-full w-full flex flex-col space-y-6 overflow-y-auto rounded-lg bg-card p-6 shadow-lg">
+
+{/* Cabeçalho com título e logo lado a lado */}
+<div className="flex justify-between items-start">
+  <div>
+    <h2 className="font-headline text-2xl font-semibold text-primary">Constru.AI</h2>
+  </div>
+
+  <div className="mr-[-60px] mt-[-20px]">
+    <img
+      src="/logo_construai.png"
       alt="Logo"
-      className="h-10 w-auto object-contain"
-  />
-      </div>
+      className="h-48 object-contain"
+    />
+  </div>
+</div>
+
       <div className="space-y-2">
         <Label htmlFor="project-type" className="text-sm font-medium">Tipo de Projeto</Label>
         <Select value={selectedProjectType ?? ""} onValueChange={onProjectTypeChange}>
