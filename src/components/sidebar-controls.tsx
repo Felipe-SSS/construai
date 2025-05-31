@@ -53,7 +53,7 @@ export default function SidebarControls({
 }: SidebarControlsProps) {
   return (
     <div className="flex h-full w-full flex-col space-y-6 overflow-y-auto rounded-lg bg-card p-6 shadow-lg">
-      <h2 className="font-headline text-2xl font-semibold text-primary">Painel de Controle</h2>
+      <h2 className="font-headline text-2xl font-semibold text-primary">Constru.AI</h2>
       
       <div className="space-y-2">
         <Label htmlFor="project-type" className="text-sm font-medium">Tipo de Projeto</Label>
