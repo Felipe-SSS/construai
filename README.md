@@ -1,5 +1,3 @@
-# Firebase Studio
+# Projeto para o Hackaton Construtech 2025
 
-This is a NextJS starter in Firebase Studio.
-
-To get started, take a look at src/app/page.tsx.
+Solução para análise de viabilidade de projetos para zonas urbanas utilizando agentes de IA.
